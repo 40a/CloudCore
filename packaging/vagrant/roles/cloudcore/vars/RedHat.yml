@@ -1,0 +1,22 @@
+---
+
+
+cloud_core_packages_dependencies:
+  - mercurial
+  - git
+  - python-setuptools
+  - ansible
+  - docker
+  - make
+  - rpm-build
+  - proot
+  - gcc
+  - gcc-c++
+  - make
+  - openssl-devel
+  - python-pip
+  - krb5-workstation
+  - krb5-libs
+  - python-devel
+
+docker_daemon: docker

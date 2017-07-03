@@ -1,0 +1,25 @@
+Source: cloudcore
+Section: admin
+Priority: optional
+Standards-Version: 3.9.7
+Maintainer: Gamunu Balagalla <gamunu.balagalla@outlook.com>
+Homepage: https://cloudcore.cloudpac.io
+Vcs-Git: git://github.com/CloudPac/CloudCore.git
+Vcs-Browser: https://github.com/CloudPac/CloudCore.git
+Build-Depends: cdbs, debhelper (>= 9)
+
+Package: cloudcore
+Architecture: amd64
+Depends: python-minimal (>= 2.7), ansible (>= 2.2), git (>= 2.7), adduser, ${python:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Recommends: python-dev (>=2.7), libkrb5-dev (>= 1.13), krb5-user (>= 1.13), python-kerberos, python-xmltodict, python-requests-kerberos, subversion (>=1.9), mercurial (>=3.7)
+Description: Comprehensive web-based automation framework and
+ Centralized infrastructure management platform,
+ provides role-based access control, job scheduling, inventory management.
+ .
+ CloudCore features:
+  * Configuration Management
+  * Provisioning
+  * Code Deployments
+  * Continuous Integration & Continuous Delivery
+  * Security & Compliance
+  * Orchestration

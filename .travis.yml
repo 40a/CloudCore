@@ -1,0 +1,42 @@
+language: go
+dist: trusty
+sudo: required
+go:
+  - 1.8
+install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y rpm build-essential devscripts pbuilder dh-make cdbs
+  - go get -v ./...
+  - go get -v github.com/stretchr/testify
+env:
+  global:
+    - CLOUD_CORE_DB_USER=cloudcore
+    - CLOUD_CORE_DB_PASSWORD=cloudcore
+    - CLOUD_CORE_DB_NAME=cloudcoredb
+    - CLOUD_CORE_DB_REPLICA=""
+    - CLOUD_CORE_DB_HOSTS="localhost:27017"
+    - CLOUD_CORE_REDIS_HOST="localhost:6379"
+
+before_script:
+  - sleep 15
+  - make mongo
+script:
+  - make travis
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+services:
+  - mongodb
+  - redis-server
+addons:
+  artifacts:
+    branch:
+      - master
+      - develop
+    s3_region: "us-west-2"
+  apt:
+    sources:
+      - mongodb-upstart
+      - mongodb-3.4-trusty
+    packages:
+      - mongodb-org-server
+      - mongodb-org-shell

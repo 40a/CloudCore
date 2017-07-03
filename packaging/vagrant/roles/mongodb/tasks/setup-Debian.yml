@@ -1,0 +1,30 @@
+---
+
+- name: "Add mongodb key"
+  apt_key:
+    keyserver: "{{ mongodb_keyserver }}"
+    id: "{{ mongodb_key_id }}"
+
+- name: "MongoDB repository"
+  apt_repository:
+    repo: "deb http://repo.mongodb.org/apt/{{ ansible_distribution | lower }} {{ ansible_distribution_release | lower }}/mongodb-org/{{ mongodb_version }} multiverse"
+    state: present
+    filename: "mongodb-org-{{ mongodb_version }}.list"
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Install dependencies packages
+  package: name={{ item }} state=present
+  with_items: "{{ mongodb_packages_dependencies }}"
+
+- name: Ensure python mongo driver installed
+  easy_install:
+    name: pymongo
+    state: latest
+
+- name: Ensure Mongodb is installed.
+  package:
+    name: "{{ __mongodb_package }}"
+    state: present
+  notify:
+    - "Start MongoDB"
+    - "Enable MongoDB"

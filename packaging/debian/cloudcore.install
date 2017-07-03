@@ -1,0 +1,5 @@
+bin/* usr/bin/
+etc/cloud-core.conf etc/
+systemd/cloud-core.service /lib/systemd/system/
+lib/plugins/inventory/* /var/lib/cloudcore/plugins/inventory/
+lib/playbooks/* /var/lib/cloudcore/playbooks/

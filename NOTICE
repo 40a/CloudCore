@@ -1,0 +1,15 @@
+CloudCore NOTICE
+=============
+
+Originally Developed at Pearson (https://www.pearson.com).
+Modified CloudPac (Pvt) Ltd. (https://www.pearson.com).
+
+Contributors and Copyright holders:
+    * Original work Copyright 2017 Pearson, Inc.
+    * Modified work Copyright 2017 CloudPac (Pvt) Ltd..
+    * Gamunu Balagalla <udaya.balagalla@pearson.com>
+
+This product bundles Gin Gonic which is available under a
+"MIT License" license.  For details, see https://gin-gonic.github.io/gin/.
+
+CloudCore incorporates code modified from Ansible Semaphore (https://ansible-semaphore.github.io/semaphore), which was written by Castaway Consulting LLC.

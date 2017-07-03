@@ -1,0 +1,28 @@
+mongodb:
+   hosts:
+      - "{{ mongodb_host }}"
+   user: "{{ mongodb_user }}"
+   pass: "{{ mongodb_password }}"
+   name: "{{ mongodb_database }}"
+   replica_set: "{{ mongodb_replica_set }}"
+rabbitmq: "{{ rabbitmq }}"
+host: "0.0.0.0"
+port: "{{ cloud_core_port }}"
+projects_home: "{{ cloud_core_projects_home }}"
+salt: "{{ cloud_core_salt }}"
+
+# TimeOut values for different jobs
+# Default is 3600
+ansible_job_timeout: 3600
+sync_job_timeout: 3600
+terraform_job_timeout: 3600
+
+# Timeout values for JWT authentication
+# Default is 3600
+jwt_timeout: 3600
+jwt_refresh_timeout: 3600
+
+# TLS
+tls_enabled: true
+ssl_certificate: "/etc/ssl/cloudcore/cloudcore.pem"
+ssl_certificate_key: "/etc/ssl/cloudcore/cloudcore.key"

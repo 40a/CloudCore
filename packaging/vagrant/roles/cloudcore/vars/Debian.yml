@@ -1,0 +1,33 @@
+---
+
+packaging_dependencies:
+  - apt-transport-https
+  - ca-certificates
+  - software-properties-common
+
+cloud_core_packages_dependencies:
+  - mercurial
+  - git
+  - python-setuptools
+  - docker-ce
+  - make
+  - ruby
+  - devscripts
+  - build-essential
+  - cdbs
+  - debhelper
+  - lintian
+  - dh-make
+  - cdbs
+  - ansible
+  - pbuilder
+  - proot
+  - python-dev
+  - libkrb5-dev
+  - python-pip
+  - libssl-dev
+  - libffi-dev
+  - python-dev
+  - krb5-user
+
+docker_daemon: docker

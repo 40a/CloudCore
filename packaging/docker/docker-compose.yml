@@ -1,0 +1,61 @@
+version: '3'
+services:
+  mongo:
+    build:
+      context: ./mongo
+    ports:
+      - '27017:27017'
+    restart: always
+    environment:
+      MONGO_ROOT_USER: root
+      MONGO_APP_USER: cloudcore
+      MONGO_APP_PASSWORD: cloudcore
+      MONGO_APP_DATABASE: cloudcoredb
+    tty: true
+    stdin_open: true
+    networks:
+      cloud_core_net:
+        aliases:
+          - mongo
+  redis:
+    image: redis
+    ports:
+      - '6379:6379'
+    restart: always
+    tty: true
+    stdin_open: true
+    networks:
+      cloud_core_net:
+        aliases:
+          - redis
+
+  cloudcore:
+    image: cloudpac/cloudcore:latest
+    volumes:
+      - ../../data/cloudcore:/data
+    ports:
+      - '8010:8010'
+    restart: always
+    environment:
+      CLOUD_CORE_PORT: ":8010"
+      PROJECTS_HOME: "/data"
+      CLOUD_CORE_DB_USER: cloudcore
+      CLOUD_CORE_DB_PASSWORD: cloudcore
+      CLOUD_CORE_DB_NAME: cloudcoredb
+      CLOUD_CORE_DB_REPLICA: ""
+      CLOUD_CORE_DB_HOSTS: "mongo:27017"
+      CLOUD_CORE_RABBITMQ: "amqp://cloudcore:cloudcore@localhost:5672/cloudcore"
+      CLOUD_CORE_SALT: "8m86pie1ef8bghbq41ru!de4"
+    tty: true
+    stdin_open: true
+    # Security risk, apply seccomp profile here
+    security_opt:
+      - seccomp:unconfined
+    networks:
+      cloud_core_net:
+        aliases:
+          - cloudcore
+
+networks:
+  cloud_core_net:
+    driver: bridge

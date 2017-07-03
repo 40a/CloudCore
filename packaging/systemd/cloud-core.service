@@ -1,0 +1,10 @@
+[Unit]
+Description=High-performance, Centralized infrastructure management
+After=network.target
+
+[Service]
+User=cloudcore
+ExecStart=/usr/bin/cloudcored
+
+[Install]
+WantedBy=multi-user.target
